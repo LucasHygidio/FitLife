@@ -11,6 +11,5 @@ namespace FitLife.Models
         public bool IsCompleted { get; set; }
 
         public int UserId { get; set; } //id que referencia o user
-        public User User { get; set; }
     }
 }

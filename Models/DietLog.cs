@@ -12,6 +12,5 @@ namespace FitLife.Models
         public bool IsHealthy { get; set; }
 
         public int UserId { get; set; } //id que referencia o user
-        public User User { get; set; } //reference navigation property, consigo acessar a classe diretamente por aqui
     }
 }

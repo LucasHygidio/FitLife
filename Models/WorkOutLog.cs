@@ -12,6 +12,5 @@ namespace FitLife.Models
         public int CaloriesBurned { get; set; }
 
         public int UserId { get; set; } //id que referencia o user
-        public User User { get; set; }
     }
 }
