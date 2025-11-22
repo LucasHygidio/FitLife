@@ -9,7 +9,8 @@ namespace FitLife.Data
         {
 
         }
-        
+
+        public DbSet<User> UserTable { get; set; }
         public DbSet<DietLog> DietLogTable { get; set; }
         public DbSet<HabitLog> HabitLogTable { get; set; }
         public DbSet<WorkOutLog> WorkOutLogTable { get; set; }

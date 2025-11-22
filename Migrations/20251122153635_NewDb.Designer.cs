@@ -4,6 +4,7 @@ using FitLife.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitLife.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20251122153635_NewDb")]
+    partial class NewDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +51,6 @@ namespace FitLife.Migrations
 
                     b.HasKey("LogId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("DietLogTable");
                 });
 
@@ -76,26 +77,7 @@ namespace FitLife.Migrations
 
                     b.HasKey("HabitLogId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("HabitLogTable");
-                });
-
-            modelBuilder.Entity("FitLife.Models.User", b =>
-                {
-                    b.Property<int>("IdUser")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUser"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdUser");
-
-                    b.ToTable("UserTable");
                 });
 
             modelBuilder.Entity("FitLife.Models.WorkOutLog", b =>
@@ -124,45 +106,7 @@ namespace FitLife.Migrations
 
                     b.HasKey("WorkOutId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("WorkOutLogTable");
-                });
-
-            modelBuilder.Entity("FitLife.Models.DietLog", b =>
-                {
-                    b.HasOne("FitLife.Models.User", null)
-                        .WithMany("dietList")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FitLife.Models.HabitLog", b =>
-                {
-                    b.HasOne("FitLife.Models.User", null)
-                        .WithMany("habitList")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FitLife.Models.WorkOutLog", b =>
-                {
-                    b.HasOne("FitLife.Models.User", null)
-                        .WithMany("WorkOutList")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FitLife.Models.User", b =>
-                {
-                    b.Navigation("WorkOutList");
-
-                    b.Navigation("dietList");
-
-                    b.Navigation("habitList");
                 });
 #pragma warning restore 612, 618
         }
